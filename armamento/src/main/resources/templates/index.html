@@ -1,0 +1,102 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <title>Cautela de Armento</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Cautela de Armamento</h1>
+                        <form class="row g-3" th:action="@{/cautelas}" method="post">
+                            <div class="col-12">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control"  id="nome" placeholder="Nome"
+                                    name="nomePolicial">
+                                    <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="area-atuacao" class="form-label">Área de atuação</label>
+                                <input type="text" class="form-control" id="area-atuacao" placeholder="Atuação"
+                                    name="areaAtuacao">
+                                    <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="data-cautela" class="form-label">Data de cautela</label>
+                                <input type="datetime" class="form-control" id="data-cautela" name="dataCautela">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="data-devolucao" class="form-label">Data de devolução</label>
+                                <input type="datetime" class="form-control" id="data-devolucao" name="dataDevCautela">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">Modelo da Arma</label>
+                                <select id="inputState" class="form-select" name="modelArma">
+                                    <option th:each="status:${modelArma}" th:value="${status}" th:text="${status}">
+                                    </option>
+
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label for="quantidade-municao" class="form-label">Qnt de munição</label>
+                                <input type="number" class="form-control" id="quantidade-municao"
+                                    name="quantidadeMunicao">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">Status</label>
+                                <select id="inputState2" class="form-select" name="statusCautela">
+                                    <option th:each="status:${statusCautela}" th:value="${status}" th:text="${status}">
+                                    </option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <!--Void Space From-->
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-dark">SALVAR</button>
+                            </div>
+                            <div class="col-12">
+                                <a href="javascript:history.back()">Voltar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<footer>
+    <div class="footer">
+        <p>Desenvolvido por N³ &copy;</p>
+    </div>
+</footer>
+
+</html>
