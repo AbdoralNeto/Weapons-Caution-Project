@@ -17,7 +17,7 @@ public class CautelaDto {
 
     private String nomePolicial;
     private String areaAtuacao;
-    //private Date dataCautela;
+   // private Date dataCautela;
     //private Date dataDevCautela;
     private ModelArma modelArma;
     private StatusCautela statusCautela;
