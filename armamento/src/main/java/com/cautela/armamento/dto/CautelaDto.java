@@ -37,5 +37,13 @@ public class CautelaDto {
         return cautela;
     }
 
+    public void fromCautela(Cautela cautela){
+        this.nomePolicial = cautela.getNomePolicial();
+        this.areaAtuacao = cautela.getAreaAtuacao();
+        this.modelArma = cautela.getModelArma();
+        this.statusCautela = cautela.getStatusCautela();
+        this.quantidadeMunicao = cautela.getQuantidadeMunicao();
+    }
+
 
 }

@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cautela.armamento.dto.CautelaDto;
@@ -20,12 +21,13 @@ import com.cautela.armamento.models.StatusCautela;
 import com.cautela.armamento.repositories.CautelaRepository;
 
 @Controller
+@RequestMapping(value = "/cautelas")
 public class CautelaController {
 
     @Autowired
     private CautelaRepository cautelaRepository;
 
-    @GetMapping("/cautelas")
+    @GetMapping("")
     public ModelAndView cautelas() {
         List<Cautela> cautelas = this.cautelaRepository.findAll();
         ModelAndView mv = new ModelAndView("cautelas/cautelas");
@@ -34,7 +36,7 @@ public class CautelaController {
         return mv;
     }
 
-    @GetMapping("/cautelas/cadastro")
+    @GetMapping("/cadastro")
     public ModelAndView novaCautela(CautelaDto requisicao) {
         ModelAndView mv = new ModelAndView("/cautelas/cadastro");
         mv.addObject("modelArma", ModelArma.values());
@@ -42,7 +44,7 @@ public class CautelaController {
         return mv;
     }
 
-    @PostMapping("/cautelas")
+    @PostMapping("")
     public ModelAndView create(@Valid CautelaDto requisicao, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             ModelAndView mv = new ModelAndView("/cadastro");
@@ -59,7 +61,7 @@ public class CautelaController {
 
     }
 
-    @GetMapping("/cautelas/{id}")
+    @GetMapping("/{id}")
     public ModelAndView show(@PathVariable Long id) {
         Optional<Cautela> optional = this.cautelaRepository.findById(id);
         if (optional.isPresent()) {
@@ -76,6 +78,25 @@ public class CautelaController {
 
         }
 
+    }
+
+    @GetMapping("/{id}/edit")
+    public ModelAndView edit(@PathVariable Long id, CautelaDto cautelaDto){
+        
+        Optional<Cautela> optional = this.cautelaRepository.findById(id);
+        
+        if(optional.isPresent()){
+            Cautela cautela = optional.get();
+            cautelaDto.fromCautela(cautela);
+
+            ModelAndView mv = new ModelAndView("cautelas/edit");
+            mv.addObject("cautelaId", cautela.getId());
+            return mv;
+        }
+        else{
+            return new ModelAndView("redirect:/cautelas");
+        }
+        
     }
 
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragmentos :: head('Cadastro de cautela')}"></head>
+<body>
+
+    <header th:replace="~{fragmentos :: header('Editar cautela')}"></header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row g-3" th:action="@{/cautelas}" method="post">
+                            <div class="col-12">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control"  id="nome" placeholder="Nome"
+                                    name="nomePolicial">
+                                    <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="area-atuacao" class="form-label">Área de atuação</label>
+                                <input type="text" class="form-control" id="area-atuacao" placeholder="Atuação"
+                                    name="areaAtuacao">
+                                    <div class="invalid-feedback"></div>
+                            </div>
+
+                            <!--<div class="col-md-6">
+                                <label for="data-cautela" class="form-label">Data de cautela</label>
+                                <input type="text" class="form-control" id="data-cautela" name="dataCautela"required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="data-devolucao" class="form-label">Data de devolução</label>
+                                <input type="text" class="form-control" id="data-devolucao" name="dataDevCautela" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                            </div>-->
+
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">Modelo da Arma</label>
+                                <select id="inputState" class="form-select" name="modelArma">
+                                    <option th:each="status:${modelArma}" th:value="${status}" th:text="${status}">
+                                    </option>
+
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label for="quantidade-municao" class="form-label">Qnt de munição</label>
+                                <input type="number" class="form-control" id="quantidade-municao"
+                                    name="quantidadeMunicao">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">Status</label>
+                                <select id="inputState2" class="form-select" name="statusCautela">
+                                    <option th:each="status:${statusCautela}" th:value="${status}" th:text="${status}">
+                                    </option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <!--Void Space From-->
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-dark">SALVAR</button>
+                            </div>
+                            <div class="col-12">
+                                <a href="javascript:history.back()">Voltar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<footer>
+    <div class="footer">
+        <p>Desenvolvido por N³ &copy;</p>
+    </div>
+</footer>
+
+</html>

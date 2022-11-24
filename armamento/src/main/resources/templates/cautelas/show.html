@@ -5,7 +5,7 @@
 
 <body>
 
-    <header th:replace="~{fragmentos :: header('Cautela #')}"></header>
+    <header th:replace="~{fragmentos :: header('Cautela #' + ${cautela.id})}"></header>
 
     <main>
         <div class="container mt-4">
@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">Informação:</h5>
                             <strong>Nome do Policial: </strong><span th:text="${cautela.nomePolicial}"></span><br />
                             <strong>Área de Atuação: </strong><span th:text="${cautela.areaAtuacao}"></span><br />
                             <!--<strong>Data de cautela:</strong><span th:text="${cautela.}"></span>
