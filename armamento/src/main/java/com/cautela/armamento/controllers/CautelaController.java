@@ -60,16 +60,17 @@ public class CautelaController {
     }
 
     @GetMapping("/cautelas/{id}")
-    public ModelAndView show(@PathVariable Long id){
+    public ModelAndView show(@PathVariable Long id) {
         Optional<Cautela> optional = this.cautelaRepository.findById(id);
-        if(optional.isPresent()){
-
+        if (optional.isPresent()) {
+            Cautela cautela = optional.get();
             ModelAndView mv = new ModelAndView("cautelas/show");
+            mv.addObject("cautela", cautela);
             return mv;
 
         }
-        //não achou o ig informado na tabela
-        else{
+        // não achou o ig informado na tabela
+        else {
 
             return new ModelAndView("redirect:/cautelas");
 
